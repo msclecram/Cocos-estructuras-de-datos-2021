@@ -3,42 +3,111 @@
 #include <time.h>
 using namespace std;
 
-#define N 1000000
+#define N 10
+#define M 10
 #define PRODUCCION
 #define DESARROLLO
 
 int A[N];
+int T[N];
 
-int main ()
+int bucket[M];
+
+void merge(int *array, int start, int end, int mid)
 {
-    srand(time(NULL));
-     for ( int r=0;r<N;r++)
-     {
-         cout << rand()%10 << " \n";
-     }
+    int r = start;
+    int a = start;
+    int b = mid;
 
-    return 0;
-
-
-
-    for ( int r=0;r<N;r++)
+    while (r<end && a<mid && b<end)
     {
-        A[r] = N-r;
-        //A[r] = r;
-        //cout << A[r] << " ";
+        if ( array[a] < array [b] )
+        {
+            T[r] = array[a];
+            a++;
+            r++;
+        }
+        else
+        {
+            T[r] = array[b];
+            b++;
+            r++;
+        }
     }
 
-    for ( int r=0;r<N;r++)
+    while (r<end && a<mid)
+    {
+        T[r] = array[a];
+            a++;
+            r++;
+    }
+    while (r<end && b<end)
+    {
+       T[r] = array[b];
+            b++;
+            r++;
+    }
+
+    for( int k=start; k< end; k++)
+    {
+        array[k] = T[k];
+    }
+}
+
+void mergeSort(int *array, int start, int end)
+{
+    if ( start == end-1 )
+        return;
+
+    int mid = (start + end) /2;
+
+    mergeSort( array, start, mid);
+    mergeSort( array, mid, end);
+
+    merge( array, start, end, mid );
+
+}
+//start = 0 
+//end = 3
+// 0 1 2 
+
+void bucketSort(int *array, int n)
+{
+    for (int r = 0; r< M ; r++ )
+    {
+         bucket[r]=0;
+
+    for (int r = 0; r<n ; r++ )
+        {
+            bucket [array[r] ]++;
+        }
+
+    int k = 0;
+    for ( int r=0;r<M;r++)
+    {
+        for (int c=0; c<bucket[r]; c++)
+        {
+            array[k] = r;
+            k++;
+        }
+    }
+
+    }
+   
+}
+void bubbleSort( int *array , int n)
+{
+     for ( int r=0;r<N;r++)
     {
         bool isSorted = true;
         for( int c=0;c<N-1 ;c++ )
         {
             
-            if (A[c]>A[c+1] )
+            if (array[c]>array[c+1] )
             {
-                int temp = A[c];
-                A[c] = A[c+1];
-                A[c+1] = temp;
+                int temp = array[c];
+                array[c] = array[c+1];
+                array[c+1] = temp;
                 isSorted = false;
             }
         }
@@ -47,14 +116,29 @@ int main ()
             break;
         }
     }
-        //10 9 8 7 6 5 4 3 2 1 
-        //9 8 7 6 5 4 3 2 1 10
-        //8 7 6 5 4 3 2 1 9 10
+}
+
+int main ()
+{
+    
+    for ( int r=0;r<N;r++)
+    {
+        A[r] = N-r;
+        //A[r] = r;
+        //cout << A[r] << " ";
+    }
+
+    //bubbleSort(A, N);
+    mergeSort(A, 0, N);
+
+
         cout << " \n";
         for( int r=0;r<N;r++)
         {
-            //cout << A[r] << " ";
+            cout << A[r] << " ";
         }
         cout << A[0] << " " << A[N-1] << " ";
-    return 0;
+        cout << "\n";
+        cout << A[0] << " " << A[N-1] << "\n";
+        return 0;
 }
