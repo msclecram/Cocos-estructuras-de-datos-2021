@@ -6,5 +6,7 @@
         "type_traits": "cpp",
         "xlocnum": "cpp",
         "xtr1common": "cpp"
+        "algorithm": "cpp",
+        "xstring": "cpp"
     }
 }
