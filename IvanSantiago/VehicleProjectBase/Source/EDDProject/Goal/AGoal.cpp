@@ -34,12 +34,7 @@ void AAGoal::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 	UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex,
 	bool bFromSweep,
-	const FHitResult& SweepResult) 
-{
+	const FHitResult& SweepResult) {
 	if (GEngine)
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Olverlapping with %s"), *OtherActor->GetName()));
-	if (OtherActor->ActorHasTag("Ball"))
-	{
-		
-	}
 }
