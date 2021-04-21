@@ -1,0 +1,2 @@
+E:\GitEstructuradeDatos\Cocos-estructuras-de-datos-2021\Pablo\030321\Ordenamiento\Debug\Ordenamiento.exe
+E:\GitEstructuradeDatos\Cocos-estructuras-de-datos-2021\Pablo\030321\Ordenamiento\Debug\Ordenamiento.pdb

@@ -1,0 +1,2 @@
+E:\GitEstructuradeDatos\Cocos-estructuras-de-datos-2021\Pablo\240221\Stones\Debug\Stones.exe
+E:\GitEstructuradeDatos\Cocos-estructuras-de-datos-2021\Pablo\240221\Stones\Debug\Stones.pdb
