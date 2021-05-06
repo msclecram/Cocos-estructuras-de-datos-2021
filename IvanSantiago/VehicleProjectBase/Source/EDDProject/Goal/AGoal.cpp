@@ -3,7 +3,9 @@
 
 #include "AGoal.h"
 #include "Components/BoxComponent.h"
-#include "../Ball.h"
+#include "../PuzzleBall.h"
+#include "../GameLogic.h"
+
 
 // Sets default values
 AAGoal::AAGoal()
@@ -28,11 +30,6 @@ void AAGoal::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	for (int i = 0; i < 5; i++)
-	{
-		ScoredBalls.Add(i, false);
-	}
-
 }
 
 void AAGoal::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
@@ -42,14 +39,31 @@ void AAGoal::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 	bool bFromSweep,
 	const FHitResult& SweepResult)
 {
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Olverlapping with %s"), *OtherActor->GetName()));
+	if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Olverlapping with %s"), *OtherActor->GetName()));
 	
-	UBall* ball = Cast<UBall>(OtherActor);
-	if (ball != nullptr)
+	APuzzleBall* ball = Cast<APuzzleBall>(OtherActor);
+
+	//if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, FString::Printf(TEXT("Statement is %d"), (ball != nullptr && porterPuzzleColor == ball->puzzleColor)));
+
+	if (ball != nullptr && porterPuzzleColor == ball->puzzleColor)
 	{
-		 
-		 
+		ModifyScoreFromBlueprint(ball);
+	}
+
+	
+
+	
+}
+
+
+void AAGoal::ModifyScoreFromBlueprint(APuzzleBall* ball)
+{
+	score += this->gameLogic->ModifyScore(ball);
+
+	if (txtScore != nullptr)
+	{
+		UTextRenderComponent* TextRenderComponent = txtScore->GetTextRender();
+		TextRenderComponent->SetText("Score: " + FString::FromInt(score));
 	}
 }
 

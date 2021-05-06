@@ -30,5 +30,7 @@ void UBall::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentT
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+
 }
+
 

@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "../PuzzleEnums.h"
+#include "Engine/TextRenderActor.h"
+#include "Components/TextRenderComponent.h"
 #include "AGoal.generated.h"
+
 
 UCLASS()
 class EDDPROJECT_API AAGoal : public AActor
@@ -14,6 +18,8 @@ class EDDPROJECT_API AAGoal : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AAGoal();
+
+	//class AGameLogic* gameLogic;
 
 protected:
 	// Called when the game starts or when spawned
@@ -33,6 +39,9 @@ protected:
 		 UPrimitiveComponent* otherComp,
 		 FVector NormalImpulse,
 		 const FHitResult& Hit);
+	
+	UFUNCTION(BlueprintCallable)
+		void ModifyScoreFromBlueprint(APuzzleBall* ball);
 
 public:	
 	// Called every frame
@@ -49,12 +58,13 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Cube")
 		class UBoxComponent* mesh;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Game Logic")
-		int targetBallID;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Game Logic")
-		TArray<int> PuzzleBalls;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Game Logic")
-		TMap<int, bool> ScoredBalls;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameLogic")
+		TEnumAsByte<PuzzleColor> porterPuzzleColor;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameLogic")
+		class AGameLogic* gameLogic;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameLogic")
+		int score = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameLogic")
+		class ATextRenderActor* txtScore;
 
 };
