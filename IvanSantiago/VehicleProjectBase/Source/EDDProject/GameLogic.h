@@ -21,7 +21,7 @@ public:
 	AGameLogic();
 		
 	UFUNCTION()
-		int ModifyScore(APuzzleBall* ballToAnalyze);
+		int ModifyScore(APuzzleBall* ballToAnalyze, PuzzleColor porterColor);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -32,6 +32,9 @@ public:
 
 	TArray<int> RegisteredBallsIDBlueSide;
 	TArray<int> RegisteredBallsIDRedSide;
+
+	bool redPorterRegisteredOrderDiscrepancy = false;
+	bool bluePorterRegisteredOrderDiscrepancy = false;
 
 	template <typename T>
 	UFUNCTION()

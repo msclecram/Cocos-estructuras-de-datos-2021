@@ -26,56 +26,62 @@ void AGameLogic::Tick(float DeltaTime)
 
 }
 
-int AGameLogic::ModifyScore(APuzzleBall* ballToAnalyze)
+int AGameLogic::ModifyScore(APuzzleBall* ballToAnalyze, PuzzleColor porterColor)
 {
+	int scoreAddition = 0;
+	bool* discrepancyBool;
+	TArray<int>* arrayToAnalyze;
+
+	if (ballToAnalyze->puzzleColor == porterColor)
+	{
+		scoreAddition++;
+		if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Reaching matching color Score Addition part ")));
+	}
+
+	
+	
+	if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Reaching pointer assignation part ")));
+	//set reference to array correspondent to color
 	if (ballToAnalyze->puzzleColor == PuzzleColor::Blue)
 	{
-		int scoreAddition;
-		if (RegisteredBallsIDBlueSide.Contains(ballToAnalyze->ballID))
-		{
-			scoreAddition = -1;
-		}
-		else
-		{
-			RegisteredBallsIDBlueSide.Add(ballToAnalyze->ballID);
-			if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, FString::Printf(TEXT("Entering Score addition")));
-			scoreAddition = 1;
-		}
-		if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Size is %d"), RegisteredBallsIDBlueSide.Num()));
+		arrayToAnalyze = &RegisteredBallsIDBlueSide;
+		discrepancyBool = &bluePorterRegisteredOrderDiscrepancy;
 		
-		if (RegisteredBallsIDBlueSide.Num() == 5 && scoreAddition > -1)
-		{
-			if (isArraySorted(RegisteredBallsIDBlueSide))
-			{
-				scoreAddition += 10;
-			}
-		}
-
-		return scoreAddition;
 	}
 	else
 	{
-		int scoreAddition;
-		if (RegisteredBallsIDRedSide.Contains(ballToAnalyze->ballID))
-		{
-			return -1;
-		}
-		else
-		{
-			RegisteredBallsIDRedSide.Add(ballToAnalyze->ballID);
-			scoreAddition = 1;
-		}
+		arrayToAnalyze = &RegisteredBallsIDRedSide;
+		discrepancyBool = &redPorterRegisteredOrderDiscrepancy;
+	}
 
-		if (RegisteredBallsIDRedSide.Num() == 5)
+	//if ball id is already registered, ser negative score
+	if (arrayToAnalyze->Contains(ballToAnalyze->ballID))
+	{
+		scoreAddition = -1;
+	}
+	else //if ball was not previously scored
+	{
+		/*if ball corresponds to the expected id (if Num() = 0, we expect ballID=1, if Num() = 1, we expect ballID=2...) AND the order wasn't broke before,
+		  add a bonus for keeping order PLUS the scoring point*/  
+		
+		if (ballToAnalyze->ballID == arrayToAnalyze->Num() + 1 && !*discrepancyBool)
 		{
-			if (isArraySorted(RegisteredBallsIDRedSide))
+			scoreAddition += 2;
+			arrayToAnalyze->Add(ballToAnalyze->ballID);
+		}
+		else //either the ball does not match expected ID or there was a previous discrepancy registered
+		{
+			scoreAddition++; //I couldn't bring myself to put +=1
+			
+			//register discrepancy if needed
+			if (ballToAnalyze->ballID != arrayToAnalyze->Num() + 1)
 			{
-				scoreAddition += 10;
+				*discrepancyBool = true;
 			}
 		}
-
-		return scoreAddition;
 	}
+
+	return scoreAddition;
 }
 
 template <typename T>

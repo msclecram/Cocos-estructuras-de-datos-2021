@@ -45,10 +45,10 @@ void AAGoal::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 
 	//if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, FString::Printf(TEXT("Statement is %d"), (ball != nullptr && porterPuzzleColor == ball->puzzleColor)));
 
-	if (ball != nullptr && porterPuzzleColor == ball->puzzleColor)
+	/*if (ball != nullptr && porterPuzzleColor == ball->puzzleColor)
 	{
 		ModifyScoreFromBlueprint(ball);
-	}
+	}*/
 
 	
 
@@ -58,7 +58,7 @@ void AAGoal::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 
 void AAGoal::ModifyScoreFromBlueprint(APuzzleBall* ball)
 {
-	score += this->gameLogic->ModifyScore(ball);
+	score += this->gameLogic->ModifyScore(ball, this->porterPuzzleColor);
 
 	if (txtScore != nullptr)
 	{
