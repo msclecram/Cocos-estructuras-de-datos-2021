@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "EDDProject",
+			"Path": "C:\\Users\\Ivan\\Escuela\\EstructuraDeDatos\\Cocos-estructuras-de-datos-2021\\IvanSantiago\\VehicleProjectBase\\Source\\EDDProject.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "EDDProjectEditor",
+			"Path": "C:\\Users\\Ivan\\Escuela\\EstructuraDeDatos\\Cocos-estructuras-de-datos-2021\\IvanSantiago\\VehicleProjectBase\\Source\\EDDProjectEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
