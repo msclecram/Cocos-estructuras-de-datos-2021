@@ -9,21 +9,7 @@ int result,
 
 int main()
 {
-    //Uncomment if code is required to go dynamic
-    /*
-    cout << "please input interger number bigger than 0 to factorize";
-    cin >> startNumber;
-    if (startNumber <= 0)
-    {
-        cout << "please input a number bigger than 0 next time.";
-    }
-    else if (startNumber == 1)
-    {
-        cout << "result is 1";
-        return 0;
-    }
-
-    */
+    
     
     result = startNumber;
 
