@@ -13,7 +13,7 @@ int main(){
             input[i] = (input[i] - 'A') + 'a';
         }
 
-        if (!(input[i] == 'a' || input[i] == 'e' || input[i] == 'i' || input[i] == 'o' || input[i] == 'u')){
+        if (!(input[i] == 'a' || input[i] == 'e' || input[i] == 'i' || input[i] == 'o' || input[i] == 'u' || input[i] == 'y')){
             cout << '.' << input[i];
         }
     }
