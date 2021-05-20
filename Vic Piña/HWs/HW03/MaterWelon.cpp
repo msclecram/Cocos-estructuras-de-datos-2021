@@ -3,9 +3,9 @@ using namespace std;
 
 int main()
 {
-    int weight;
-    cout<<"Enter the weight of the fruit\n"; 
+    int weight, result;
     cin >> weight; 
-    if (weight % 2 == 0) { cout << "YES"; }
+    result = weight / 2;
+    if (weight % 2 == 0 && result % 2 == 0) { cout << "YES"; }
     else { cout << "NO"; }
 }
