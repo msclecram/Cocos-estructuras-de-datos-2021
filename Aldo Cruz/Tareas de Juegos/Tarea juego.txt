@@ -1,0 +1,98 @@
+Kirk's Quest - Montañas
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+/**
+ * The while loop represents the game.
+ * Each iteration represents a turn of the game
+ * where you are given inputs (the heights of the mountains)
+ * and where you have to print an output (the index of the mountain to fire on)
+ * The inputs you are given are automatically updated according to your last actions.
+ **/
+
+int main()
+{
+
+    // game loop
+    while (1) {
+
+        int max = 0; 
+        int imax = 0; 
+        for (int i = 0; i < 8; i++) {
+            int mountainH; // represents the height of one mountain.
+            cin >> mountainH; cin.ignore();
+           
+             if (mountainH > max) {
+                max = mountainH;
+                imax = i;
+            }
+            
+
+        }
+        cout << imax <<endl; 
+        
+        // Write an action using cout. DON'T FORGET THE "<< endl"
+        // To debug: cerr << "Debug messages..." << endl;
+
+        // The index of the mountain to fire on.
+    }
+}
+
+Power of Thor - Episode 1 
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ * ---
+ * Hint: You can use the debug stream to print initialTX and initialTY, if Thor seems not follow your orders.
+ **/
+int main()
+{
+    int lightX; // the X position of the light of power
+    int lightY; // the Y position of the light of power
+    int initialTX; // Thor's starting X position
+    int initialTY; // Thor's starting Y position
+    cin >> lightX >> lightY >> initialTX >> initialTY; cin.ignore();
+
+    int movementX = initialTX;
+    int movementY = initialTY;
+
+    // game loop
+    while (1) {
+        int remainingTurns;
+        cin >> remainingTurns; cin.ignore();
+
+        string directionX = "";
+        string directionY = "";
+
+        if (movementY > lightY) {
+            directionY = "N";
+            movementY--;
+        } else if (movementY < lightY) {
+            directionY = "S";
+            movementY++;
+        }
+        
+        if (movementX > lightX) {
+            directionX = "W";
+            movementX--;
+        } else if (movementX < lightX) {
+            directionX = "E";
+            movementX++;
+        }
+        
+        cout << directionY << directionX << endl;
+    }
+}
