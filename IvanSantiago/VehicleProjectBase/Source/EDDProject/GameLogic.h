@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Goal/AGoal.h"
+
+#include "PuzzleBall.h"
 #include "GameLogic.generated.h"
 
 
@@ -18,13 +19,9 @@ class EDDPROJECT_API AGameLogic : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AGameLogic();
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Example")
-		TArray<AAGoal*> PuzzleGoalZones;
 		
-
-
-
+	UFUNCTION()
+		int ModifyScore(APuzzleBall* ballToAnalyze, PuzzleColor porterColor);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -32,5 +29,15 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	TArray<int> RegisteredBallsIDBlueSide;
+	TArray<int> RegisteredBallsIDRedSide;
+
+	bool redPorterRegisteredOrderDiscrepancy = false;
+	bool bluePorterRegisteredOrderDiscrepancy = false;
+
+	template <typename T>
+	UFUNCTION()
+		bool isArraySorted(TArray<T> arrayToAnalyze);
 
 };

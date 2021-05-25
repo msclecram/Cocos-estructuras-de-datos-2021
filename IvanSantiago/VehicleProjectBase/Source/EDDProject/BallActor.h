@@ -23,4 +23,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(visibleAnywhere)
+	class UStaticMeshComponent* myStaticMesh;
+	
+	UFUNCTION(BlueprintCallable)
+	void MakeTheBallJump(float impulse);
 };

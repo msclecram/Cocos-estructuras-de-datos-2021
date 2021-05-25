@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PuzzleEnums.h"
 #include "Components/ActorComponent.h"
 #include "Ball.generated.h"
 
@@ -15,6 +16,7 @@ class EDDPROJECT_API UBall : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UBall();
+	
 
 protected:
 	// Called when the game starts
@@ -27,5 +29,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Example")
 		int ballID;
 
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Status)
+		TEnumAsByte<PuzzleColor> puzzleColor;
 		
 };
