@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+int main ()
+{
+    cout << " Can you give me the number that you want to factorize of 1 to 10? ";
+
+    int number= 10;
+    int pvariable;
+    int result;
+    int round;
+
+    if (number == 1)
+    {
+       cout <<"The factorial number is 1";
+       return 0; 
+    }
+
+    result= number;
+    pvariable = number -1;
+    round = pvariable;
+    
+    for (int i= 0 ; i < round ; i++)
+    {
+        result *= pvariable
+        pvariable -- ;
+    }
+    
+    cout <<"The factorial number is" << result <<;
+    return 0;
+}
