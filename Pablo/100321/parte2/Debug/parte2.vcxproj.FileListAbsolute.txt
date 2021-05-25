@@ -1,0 +1,2 @@
+E:\GitEstructuradeDatos\Cocos-estructuras-de-datos-2021\Pablo\100321\parte2\Debug\parte2.exe
+E:\GitEstructuradeDatos\Cocos-estructuras-de-datos-2021\Pablo\100321\parte2\Debug\parte2.pdb

@@ -1,0 +1,2 @@
+E:\GitEstructuradeDatos\Cocos-estructuras-de-datos-2021\Pablo\070421\ClaseSet\Debug\ClaseSet.exe
+E:\GitEstructuradeDatos\Cocos-estructuras-de-datos-2021\Pablo\070421\ClaseSet\Debug\ClaseSet.pdb
