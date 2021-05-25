@@ -27,6 +27,13 @@ protected:
 		bool bFromSweep,
 		const FHitResult& SweepResult);
 
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent,
+		 AActor* OtherActor,
+		 UPrimitiveComponent* otherComp,
+		 FVector NormalImpulse,
+		 const FHitResult& Hit);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -42,5 +49,12 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Cube")
 		class UBoxComponent* mesh;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Game Logic")
+		int targetBallID;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Game Logic")
+		TArray<int> PuzzleBalls;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Game Logic")
+		TMap<int, bool> ScoredBalls;
 
 };
